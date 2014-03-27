@@ -6,7 +6,7 @@ public class Lokvanj : Plant {
 	PlantType plantType = PlantType.lokvanj;	
 	static Material material = Resources.Load("Materials/Lokvanj") as Material;
 	
-	void Start () {
+	void Awake () {
 		isBuilt = false;
 		
 		maxHealth = 10f; health = 0f;

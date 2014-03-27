@@ -41,12 +41,14 @@ public class HexMap : MonoBehaviour {
 	}
 	
 	void createMap () {
+		HexMath.readNeighbourLists();
+	
 		Object landTile = Resources.Load("Prefabs/EarthTile");
 		Object pondTile = Resources.Load("Prefabs/PondTile");
 		
 		GameObject tile;
 
-		int Dim = 5; //Dimenzija terena
+		int Dim = 10; //Dimenzija terena
 		int UpperOff = 0;
 		int LowerOff = 0;
 

@@ -11,16 +11,21 @@ public abstract class Plant : MonoBehaviour {
 	protected float maxAttack, attack;
 	protected float maxSun, sunProduction, sun;
 	protected float maxWater, waterProduction, water;
+	
+	protected GraphNode node;
+	public GraphNode Node {
+		get { return node; }
+		set { node = value;}
+	}
 
 	PlantType plantType;
+	public PlantType Type {
+		get { return plantType; }
+	}
 	static Material material;
 	
-	void Awake() {
-	
-	
+	protected virtual void Start() {
+		node = new GraphNode(gameObject);
 	}
 	
-	void Start() {	
-	}
-
 }

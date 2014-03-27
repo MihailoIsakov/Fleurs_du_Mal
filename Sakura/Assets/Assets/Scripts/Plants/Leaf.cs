@@ -6,7 +6,7 @@ public class Leaf : Plant {
 	PlantType plantType = PlantType.leaf;	
 	static Material material = Resources.Load("Materials/List") as Material;
 	
-	void Start () {
+	void Awake () {
 		isBuilt = false;
 	
 		maxHealth = 10f; health = 0f;

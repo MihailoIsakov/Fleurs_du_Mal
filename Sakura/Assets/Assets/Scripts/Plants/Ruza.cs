@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Ruza : Plant {
 	
-	PlantType plantType = PlantType.belarada;	
-	static Material material = Resources.Load("Materials/Belarada") as Material;
+	PlantType plantType = PlantType.ruza;	
+	static Material material = Resources.Load("Materials/Ruza") as Material;
 	private static GameObject thorn = Resources.Load("Prefabs/WannabeThorn") as GameObject;
 	public float cooldown = 5.0f ;
 	public int range = 5;
@@ -23,18 +23,20 @@ public class Ruza : Plant {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
-		if ( Time.time > ( prosli + cooldown ) )
-		{
-			Debug.Log("Ruzin interval");
-			foreach (GameObject g in ( AssemblyCSharp.HexMath.neighbours ( (int)transform.position.x, (int)transform.position.y , range) ) ){
-			GameObject token = Instantiate(thorn, transform.position, transform.parent.rotation) as GameObject;
-			token.GetComponent<ThornProjectile>().Goal =  new Vector3(0.0f,0.0f,0.0f) ;
-			prosli = Time.time;
-				break;
-			}
-		}
+	void Update () { //TODO resi picvajz
+		HexMath.breadthFirstSearch(gameObject, HexMath.testFunction1);
+				
+		
+//		if ( Time.time > ( prosli + cooldown ) )
+//		{
+//			Debug.Log("Ruzin interval");
+//			foreach (GameObject g in ( HexMath.neighbours ( gameObject.GetComponent<Tile>().position , range) ) ){
+//			GameObject token = Instantiate(thorn, transform.position, transform.parent.rotation) as GameObject;
+//			token.GetComponent<ThornProjectile>().Goal =  new Vector3(0.0f,0.0f,0.0f) ;
+//			prosli = Time.time;
+//				break;
+//			}
+//		}
 	}
 
 }

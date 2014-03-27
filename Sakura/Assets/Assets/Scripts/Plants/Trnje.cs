@@ -8,7 +8,7 @@ public class Trnje : Plant {
 	public float cooldown = 3.0f;
 	public float prosli ;
 	
-	void Start () {
+	void Awake () {
 		isBuilt = false;
 		
 		maxHealth = 10f; health = 0f;
@@ -25,11 +25,10 @@ public class Trnje : Plant {
 		if ( Time.time > ( prosli + cooldown ) )
 		{
 			Debug.Log("Ruzin interval");
-			if (( AssemblyCSharp.HexMath.neighbours ( (int)transform.position.x, (int)transform.position.y , 1) ) )!= null)
+			if ((HexMath.neighbours (gameObject.GetComponent<Tile>().position, 1) ) != null)
 			{
 //				GameObject token = Instantiate(thorn, transform.position, transform.parent.rotation) as GameObject;
 				prosli = Time.time;
-				break;
 			}
 		}
 		

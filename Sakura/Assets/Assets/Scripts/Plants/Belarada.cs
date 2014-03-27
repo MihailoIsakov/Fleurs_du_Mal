@@ -29,11 +29,11 @@ public class Belarada : Plant {
 	
 	void createSunToken() {
 		GameObject token = Instantiate(sunToken, transform.position, transform.parent.rotation) as GameObject;
-		List<GameObject> hitList = new List<GameObject>();
-		hitList.Add(HexMap.Instance.map[new Vector2(5,5)]);
-		hitList.Add(HexMap.Instance.map[new Vector2(1,7)]);
-		hitList.Add(HexMap.Instance.map[new Vector2(4,2)]);
-		token.GetComponent<SunProjectile>().HitList = hitList;
-		Console.WriteLine(hitList.ToString());
+//		List<GameObject> hitList = new List<GameObject>();
+//		hitList.Add(HexMap.Instance.map[new Vector2(5,5)]);
+//		hitList.Add(HexMap.Instance.map[new Vector2(1,7)]);
+//		hitList.Add(HexMap.Instance.map[new Vector2(4,2)]);
+//		token.GetComponent<SunProjectile>().HitList = hitList;
+//		Console.WriteLine(hitList.ToString());
 	}
 }
