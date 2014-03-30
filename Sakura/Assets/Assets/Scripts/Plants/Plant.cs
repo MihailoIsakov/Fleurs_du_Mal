@@ -28,4 +28,8 @@ public abstract class Plant : MonoBehaviour {
 		node = new GraphNode(gameObject);
 	}
 	
+	protected virtual void OnDestroy() {
+		node.OnDestroy();
+	}
+	
 }

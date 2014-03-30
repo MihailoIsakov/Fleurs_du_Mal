@@ -16,6 +16,12 @@ public class GraphNode {
 		findConnections(parent);
 	}
 	
+	public void OnDestroy() {
+		foreach (GraphNode node in connections) //for all my connections
+			foreach (GraphNode nodeConnection in node.connections) //remove me from theirs
+				nodeConnection.removeConnection(this);
+	}
+	
 	public void addConnection(GraphNode newKid) {
 		connections.Add(newKid);
 	}
@@ -27,13 +33,13 @@ public class GraphNode {
 	public void findConnections(GameObject go) {
 		connections = new List<GraphNode>();
 		
-		List<GameObject> neighbours = HexMath.neighbours(go, HexMath.RANGE);
+		List<GameObject> neighbours = HexMath.neighbours(go, HexMath.RANGE); //see who's around
 		foreach (GameObject obj in neighbours)
-			if (obj.GetComponent<Plant>() != null) //is plant
+			if (obj.GetComponent<Plant>() != null)
 			{
 				GraphNode neighbourNode = obj.GetComponent<Plant>().Node;
-				connections.Add(neighbourNode);	
-				neighbourNode.addConnection(this);
+				connections.Add(neighbourNode);	//if its a plant, add him to my connections
+				neighbourNode.addConnection(this); //and add me to his connections. If I can see him, he can see me.
 			}
 	}
 	

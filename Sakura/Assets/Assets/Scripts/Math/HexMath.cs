@@ -41,13 +41,17 @@ public static class HexMath	{
 		}						
 	}
 	
-	public static float hexDistance(float x1, float y1, float x2, float y2) { //returns the distance between two hexes
-		return (Mathf.Abs(x1 - x2) + Mathf.Abs(y1 - y2) + Mathf.Abs(x2 + y2 - x1 - y1)) / 2;		
+	//tested. Passed
+	public static int hexDistance(float x1, float y1, float x2, float y2) { //returns the distance between two hexes
+		return Mathf.RoundToInt((Mathf.Abs(x1 - x2) + Mathf.Abs(y1 - y2) + Mathf.Abs(x2 + y2 - x1 - y1)) / 2);		
 	}
-	public static float hexDistance(Tile t1, Tile t2) {
-		return hexDistance(t1.position.x, t1.position.y, t2.position.x, t2.position.y);
+	public static int hexDistance(Vector2 v1, Vector2 v2) {
+		return hexDistance(v1.x, v1.y, v2.x, v2.y);
 	}
-	public static float hexDistance(GameObject t1, GameObject t2) {
+	public static int hexDistance(Tile t1, Tile t2) {
+		return hexDistance(t1.position, t2.position);
+	}
+	public static int hexDistance(GameObject t1, GameObject t2) {
 		return hexDistance(t1.GetComponent<Tile>(), t2.GetComponent<Tile>());
 	}
 	public static float euclidDistance(GameObject t1, GameObject t2) 
@@ -56,9 +60,9 @@ public static class HexMath	{
 		return vec.magnitude;		
 	}
 	
-	/// Gets the neighbouring tiles of the field at pos
+	// Tested. Passed.
+	// Gets the neighbouring tiles of the field at pos
 	public static List<Vector2> neighbourVectors(Vector2 pos, int range) { 
-		//TODO Test function
 		
 		//Return a precreated list
 		if (range == 1) {
@@ -67,17 +71,19 @@ public static class HexMath	{
 				list.Add(vector + pos);
 			return list;
 		}
-		if (range == 3) {
+		else if (range == 3) {
 			List<Vector2> list = new List<Vector2>();
 			foreach (Vector2 vector in neighbour3)
 				list.Add(vector+ pos);
 			return list;
-		}if (range == 5) {
+		}
+		else if (range == 5) {
 			List<Vector2> list = new List<Vector2>();
 			foreach (Vector2 vector in neighbour5)
 				list.Add(vector+ pos);
 			return list;
-		}if (range == 7) {
+		}
+		else if (range == 7) {
 			List<Vector2> list = new List<Vector2>();
 			foreach (Vector2 vector in neighbour7)
 				list.Add(vector+ pos);
@@ -86,28 +92,14 @@ public static class HexMath	{
 		
 		//If the range is not covered by a pre-prepared list:		
 		List<Vector2> neighbourList = new List<Vector2>();
-		int UpperOff = 0;
-		int LowerOff = 0;
-		
-		for (float y = pos.y - range; y <= pos.y + range; y++) 
-			for (float x = pos.x - LowerOff; x <= pos.x + range-UpperOff; x++)
-				if (!(pos.x == x && pos.y == y)) { // Da ne bi stavio samog sebe
-					// Ovde implementirati sta se smatra korisnim susedom
-					try
-					{
-						neighbourList.Add(new Vector2 (x, y));
-					}
-					catch (KeyNotFoundException e)
-					{}
-				}
-				if (LowerOff < range)
-					LowerOff++;
-				else if (UpperOff < range)
-					UpperOff++;
+		for (float x = pos.x - range; x <= pos.x + range; x++)
+			for (float y = Mathf.Max(-range, -x-range); y <= Mathf.Min(range, -x + range); y++)
+				neighbourList.Add(new Vector2(x, y));
+				
 		return neighbourList;
 	}
-	
-	//TODO make methods robust against nulls
+		
+	// Tested. Passed.
 	public static List<GameObject> neighbours(Vector2 pos, int range) {
 		List<Vector2> list = neighbourVectors(pos, range);
 		List<GameObject> neighbourList = new List<GameObject>();
@@ -115,13 +107,11 @@ public static class HexMath	{
 		try {
 			neighbourList.Add(HexMap.Instance.map[vec]);
 		}
-		catch (KeyNotFoundException) 
-		{
+		catch (KeyNotFoundException) {
 			Debug.Log("Key not found exception in HexMath.neighbours: " + vec.ToString());
 		}
 		return neighbourList;
 	}
-			                                      
 	public static List<GameObject> neighbours(GameObject g, int range) {
 		return neighbours (g.GetComponent<Tile>().position, range);
 	}
