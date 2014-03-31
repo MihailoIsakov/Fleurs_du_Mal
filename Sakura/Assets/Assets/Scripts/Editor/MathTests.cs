@@ -7,6 +7,8 @@ using UnityEngine;
 [TestFixture]
 public class MathTests {
 	
+//######################################################################################
+	
 	[TestFixtureSetUp]
 	public void setup() {
 		HexMath.readNeighbourLists();
@@ -30,6 +32,7 @@ public class MathTests {
 		int distance = HexMath.hexDistance(start, v);
 		Assert.AreEqual(distance, range);
 	}
+//######################################################################################
 	
 	[TestCase (1)]
 	[TestCase (2)]
@@ -50,5 +53,47 @@ public class MathTests {
 			Assert.LessOrEqual (distance, range, v.x + " " + v.y);
 		}
 		Assert.Pass();
-	}	
+	}
+
+//######################################################################################
+	
+	
+	static GraphNode node1 = new GraphNode(new Vector2(0,0));
+	static GraphNode node2 = new GraphNode(new Vector2(2,2));
+	static GraphNode node3 = new GraphNode(new Vector2(4,4));
+	static GraphNode node4 = new GraphNode(new Vector2(2,5));
+	static GraphNode node5 = new GraphNode(new Vector2(2,7));
+	static GraphNode node6 = new GraphNode(new Vector2(1,8));
+	static GraphNode node7 = new GraphNode(new Vector2(3,11));
+	static GraphNode node8 = new GraphNode(new Vector2(5,2));
+	
+	
+	GraphNode[] startNodes = {node1,  node6, node4};
+		
+	[Test]
+	public void testGraph () {		
+		
+		//have to manually insert startNode :(
+		GraphNode test = node4;
+		
+		//link graph;
+		node2.addMutualConnection(node1).addMutualConnection(node3).addMutualConnection(node8).addMutualConnection(node4);
+		node3.addMutualConnection (node8);
+		node5.addMutualConnection(node4).addMutualConnection (node6).addMutualConnection (node7);
+		node6.addMutualConnection (node7);
+		
+		List<GraphNode> search = GraphSearch.horizonSearch(test, testFunction).path();
+		foreach (GraphNode node in search)
+			Debug.Log(node.position.x + " _ " + node.position.y);
+		Assert.Pass();
+//		Assert.IsTrue(search[search.Count - 1].position.Equals(node8));
+		
+	}
+	
+	public bool testFunction(GraphNode node) {
+		if (node.Equals(node7) || node.Equals(node8))
+			return true;
+		else
+			return false;
+	}
 }

@@ -25,7 +25,7 @@ public abstract class Plant : MonoBehaviour {
 	static Material material;
 	
 	protected virtual void Start() {
-		node = new GraphNode(gameObject);
+		node = new GraphNode(gameObject.GetComponent<Tile>().position);
 	}
 	
 	protected virtual void OnDestroy() {

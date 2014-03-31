@@ -137,8 +137,8 @@ public static class HexMath	{
 		
 		while (searchList.Count > 0) { //searches until it finds a candidate or it runs out of nodes
 			GraphNode searchNode = searchList[0];
-			if ( isCandidate(searchNode.parent))
-				return searchNode.parent;
+			if ( isCandidate(searchNode.Parent))
+				return searchNode.Parent;
 			
 			passed.Add(searchNode);
 			searchList.Remove(searchNode);
@@ -148,26 +148,7 @@ public static class HexMath	{
 		}
 		
 		return null; //has not found any candidate	
-	}
-	
-	public static List<GraphNode> depthFirstSearch(GraphNode start, GraphNode end) {
-		if (start == end) { //found the end
-			List<GraphNode> list =  new List<GraphNode>();
-			list.Add(end); 
-			return list;
-		}
-		else {
-			foreach(GraphNode node in start.Connections) {
-				List<GraphNode> list = depthFirstSearch(node, end);
-				if (list != null) {
-					list.Insert(0, node);
-					return list;
-				}	
-			}
-		}
-		return null;		
-	}
-	
+	}	
 	
 //	//TODO implement better list sorting
 //	//TODO implement Theseus algorithm. Test performance in number of steps and in processing time.
