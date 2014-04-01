@@ -64,7 +64,7 @@ public class MathTests {
 	static GraphNode node4 = new GraphNode(new Vector2(2,5));
 	static GraphNode node5 = new GraphNode(new Vector2(2,7));
 	static GraphNode node6 = new GraphNode(new Vector2(1,8));
-	static GraphNode node7 = new GraphNode(new Vector2(3,11));
+	static GraphNode node7 = new GraphNode(new Vector2(3,8)); //changing between (3,8) and (3,11) we see that the search really finds the nearest.
 	static GraphNode node8 = new GraphNode(new Vector2(5,2));
 	
 	

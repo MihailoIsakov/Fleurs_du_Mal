@@ -259,7 +259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5532d6af15e3a458a333789d39a6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pondChance: .0500000007
   selected: {fileID: 0}
 --- !u!4 &835045476
 Transform:

@@ -52,16 +52,15 @@ public class GraphNode {
 		return this;
 	}
 	
-	public void findConnections(GameObject go) {
+	public void findConnections() {
 		connections = new List<GraphNode>();
 		
-		List<GameObject> neighbours = HexMath.neighbours(go, HexMath.RANGE); //see who's around
+		List<GameObject> neighbours = HexMath.neighbours(Parent, HexMath.RANGE); //see who's around
 		foreach (GameObject obj in neighbours)
 			if (obj.GetComponent<Plant>() != null) // any plants?
 			{
 				GraphNode neighbourNode = obj.GetComponent<Plant>().Node; 
-				connections.Add(neighbourNode);	//if its a plant, add him to my connections
-				neighbourNode.addConnection(this); //and add me to his connections. If I can see him, he can see me.
+				addMutualConnection(neighbourNode); //add him to my connections, and me to his.
 			}
 	}
 	

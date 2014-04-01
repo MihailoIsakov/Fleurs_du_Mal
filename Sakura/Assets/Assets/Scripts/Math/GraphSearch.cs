@@ -30,7 +30,7 @@ public static class GraphSearch {
 			}
 			open.Remove(pair);
 		}
-		
+		//See if its better to return an empty list or return a null when no path is found
 		return null;
 	}
 	

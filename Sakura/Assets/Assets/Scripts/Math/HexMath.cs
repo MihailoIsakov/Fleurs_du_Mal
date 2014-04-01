@@ -126,29 +126,7 @@ public static class HexMath	{
 //				
 //	
 //	}
-	
-	//TODO implement iterative depth search if memory problems encountered
-	public static GameObject breadthFirstSearch(GameObject go, testFunction isCandidate) {
-
-		GraphNode startNode = go.GetComponent<Plant>().Node;
-		List<GraphNode> searchList = startNode.Connections;
-		List<GraphNode> path = new List<GraphNode>();
-		HashSet<GraphNode> passed = new HashSet<GraphNode>();
 		
-		while (searchList.Count > 0) { //searches until it finds a candidate or it runs out of nodes
-			GraphNode searchNode = searchList[0];
-			if ( isCandidate(searchNode.Parent))
-				return searchNode.Parent;
-			
-			passed.Add(searchNode);
-			searchList.Remove(searchNode);
-			foreach(GraphNode child in searchNode.Connections)
-				if (!passed.Contains(child)) //has not yet been passed
-					searchList.Add(child);
-		}
-		
-		return null; //has not found any candidate	
-	}	
 	
 //	//TODO implement better list sorting
 //	//TODO implement Theseus algorithm. Test performance in number of steps and in processing time.

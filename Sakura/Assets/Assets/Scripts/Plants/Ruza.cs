@@ -14,9 +14,9 @@ public class Ruza : Plant {
 		isBuilt = false;
 		
 		maxHealth = 15f; health = 0f;
-		maxAttack = 0f;  attack = 0f;
-		maxSun = 5f; sunProduction = 0.2f; sun = 0f;
-		maxWater = 1f; waterProduction = 0.1f; water = 0f;
+		attack = 0f;
+		maxSun = 5f; sunProduction = 0f; sun = 0f;
+		maxWater = 1f; waterProduction = 0f; water = 0f;
 		
 		GetComponent<MeshRenderer>().material = material;	
 		prosli = Time.time;
@@ -24,7 +24,7 @@ public class Ruza : Plant {
 	
 	// Update is called once per frame
 	void Update () { //TODO resi picvajz
-		HexMath.breadthFirstSearch(gameObject, HexMath.testFunction1);
+		
 				
 		
 //		if ( Time.time > ( prosli + cooldown ) )
