@@ -4,21 +4,22 @@ using UnityEngine;
 public class Ruza : Plant {
 	
 	PlantType plantType = PlantType.ruza;	
-	static Material material = Resources.Load("Materials/Ruza") as Material;
 	private static GameObject thorn = Resources.Load("Prefabs/WannabeThorn") as GameObject;
 	public float cooldown = 5.0f ;
 	public int range = 5;
 	private float prosli ;
 	
 	void Awake () {
+		material = Resources.Load("Materials/Ruza") as Material;
+	
 		isBuilt = false;
 		
 		maxHealth = 15f; health = 0f;
 		attack = 0f;
-		maxSun = 5f; sunProduction = 0f; sun = 0f;
-		maxWater = 1f; waterProduction = 0f; water = 0f;
+		maxSun = 5f; sunProduction = 0f; SunNeeded = 5f; Sun = 0f;
+		maxWater = 1f; waterProduction = 0f; Water = 0f;
 		
-		GetComponent<MeshRenderer>().material = material;	
+		setMaterial();
 		prosli = Time.time;
 	}
 	

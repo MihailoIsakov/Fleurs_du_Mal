@@ -6,6 +6,7 @@ public class Tile : MonoBehaviour {
 	
 	public enum TileType {earth, pond, desert};
 	public TileType tileType;
+	public Material material;
 
 	public Vector2 position; //must be integers
 	public float height; 

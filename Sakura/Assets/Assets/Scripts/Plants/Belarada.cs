@@ -24,7 +24,6 @@ public class Belarada : Plant {
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update();
-		Debug.Log(Sun);
 		if (Sun >= maxSun)
 		{
 			Sun -= 1;

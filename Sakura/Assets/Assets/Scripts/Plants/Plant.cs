@@ -10,9 +10,20 @@ public abstract class Plant : MonoBehaviour {
 
 	public enum PlantType {leaf, belarada, lokvanj, maslacak, pecurka, ruza, trnje, vockica};
 
-	protected bool isBuilt;
-
-	protected float maxHealth, health;
+	public bool isBuilt {
+		get;
+		protected set;
+	} //isBuilt with a public getter
+	protected float sunNeeded; //sun needed to be built
+	public float SunNeeded {
+		get { return sunNeeded;}
+		protected set {
+			sunNeeded = value;
+		}
+	}
+	
+	protected float maxHealth;
+	protected float health;
 	public float Health {
 		get {
 			return health;
@@ -26,13 +37,22 @@ public abstract class Plant : MonoBehaviour {
 	
 	protected float attack;
 	public float sunProduction, maxSun;
-	protected float sun;
+	protected float sun; //checks if the plant has been built first
 	public float Sun {
 		get {
 			return sun;
 		}
 		set {
-			sun = Mathf.Clamp(value, 0, maxSun);
+			if (isBuilt)
+				sun = Mathf.Clamp(value, 0, maxSun);
+			else {
+				sun = value;
+				if (sun >= SunNeeded) {
+					sun = 0;
+					isBuilt = true;
+				}
+				setMaterial();
+			}
 		}
 	}
 	public float waterProduction, maxWater;
@@ -56,14 +76,21 @@ public abstract class Plant : MonoBehaviour {
 	public PlantType Type {
 		get { return plantType; }
 	}
-	static Material material;
+	
+	protected Material material;
+	protected virtual void setMaterial() {
+		if (isBuilt)
+			gameObject.renderer.material = material;
+		else {
+			float t = 0.2f + Sun / SunNeeded * 0.6f; // _/-
+			Debug.Log("TTTTTT: "+t);
+			gameObject.renderer.material.Lerp(material, gameObject.GetComponent<Tile>().material, t);
+		}
+	}
 	
 	protected virtual void Start() {
 		node = new GraphNode(gameObject.GetComponent<Tile>().position); //at start, create node
 		node.findConnections(); // and find its connections
-		Debug.Log("connections: "+node.Connections.Count);
-		foreach (GraphNode connection in node.Connections)
-			Debug.Log(connection.position.x+ "  "+connection.position.y);
 	}
 	
 	protected virtual void Update() {
@@ -73,8 +100,11 @@ public abstract class Plant : MonoBehaviour {
 	
 	protected virtual void OnDestroy() {
 		node.OnDestroy();
+		gameObject.renderer.material = gameObject.GetComponent<Tile>().material; //paint it as land
 	}
 	
 	protected virtual void Die() {}
+	
+	
 	
 }
