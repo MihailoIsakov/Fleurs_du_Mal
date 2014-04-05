@@ -79,13 +79,15 @@ public abstract class Plant : MonoBehaviour {
 	
 	protected Material material;
 	protected virtual void setMaterial() {
-		if (isBuilt)
-			gameObject.renderer.material = material;
-		else {
-			float t = 0.2f + Sun / SunNeeded * 0.6f; // _/-
-			Debug.Log("TTTTTT: "+t);
-			gameObject.renderer.material.Lerp(material, gameObject.GetComponent<Tile>().material, t);
-		}
+		gameObject.renderer.material = material;
+//		if (isBuilt)
+//			gameObject.renderer.material = material;
+//		else {
+//			float t = 0.2f + Sun / SunNeeded * 0.6f; // _/-
+//			Debug.Log("TTTTTT: "+t);
+//			gameObject.renderer.material.SetFloat("_Blend", t);
+////			gameObject.renderer.material.Lerp(material, gameObject.GetComponent<Tile>().material, t);
+//		}
 	}
 	
 	protected virtual void Start() {
