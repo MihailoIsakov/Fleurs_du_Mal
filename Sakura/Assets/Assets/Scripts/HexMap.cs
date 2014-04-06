@@ -42,7 +42,12 @@ public class HexMap : MonoBehaviour {
 		{
 			for (int x = 0-LowerOff; x <= Dim-UpperOff; x++)
 			{ 
-				if (PONDCHANCE > Random.value) 
+				if (x == 0 && y == 0)
+				{
+					tile = Instantiate (landTile, transform.position + x * SHIFTX + y * SHIFTY, transform.rotation) as GameObject;
+					tile.AddComponent("Root");
+				}
+				else if (PONDCHANCE > Random.value) 
 					tile = Instantiate (pondTile, transform.position + x * SHIFTX + y * SHIFTY, transform.rotation) as GameObject;
 				else
 					tile = Instantiate (landTile, transform.position + x * SHIFTX + y * SHIFTY, transform.rotation) as GameObject;

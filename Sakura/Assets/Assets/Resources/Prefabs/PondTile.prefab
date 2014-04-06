@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 1
+  material: {fileID: 2100000, guid: c26de2b1e734feb43b2d68b3ddfe1918, type: 2}
   position: {x: 0, y: 0}
   height: 0
   sunAvailable: 0

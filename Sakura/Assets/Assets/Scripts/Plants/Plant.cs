@@ -8,7 +8,7 @@ using System.Collections;
 
 public abstract class Plant : MonoBehaviour {
 
-	public enum PlantType {leaf, belarada, lokvanj, maslacak, pecurka, ruza, trnje, vockica};
+	public enum PlantType {root, leaf, belarada, lokvanj, maslacak, pecurka, ruza, trnje, vockica};
 
 	public bool isBuilt {
 		get;
@@ -78,16 +78,13 @@ public abstract class Plant : MonoBehaviour {
 	}
 	
 	protected Material material;
+	public Material Material {
+		get { return material;}
+		set { material = value;}
+	}
+	
 	protected virtual void setMaterial() {
-		gameObject.renderer.material = material;
-//		if (isBuilt)
-//			gameObject.renderer.material = material;
-//		else {
-//			float t = 0.2f + Sun / SunNeeded * 0.6f; // _/-
-//			Debug.Log("TTTTTT: "+t);
-//			gameObject.renderer.material.SetFloat("_Blend", t);
-////			gameObject.renderer.material.Lerp(material, gameObject.GetComponent<Tile>().material, t);
-//		}
+		renderer.material = Material;
 	}
 	
 	protected virtual void Start() {
@@ -105,7 +102,9 @@ public abstract class Plant : MonoBehaviour {
 		gameObject.renderer.material = gameObject.GetComponent<Tile>().material; //paint it as land
 	}
 	
-	protected virtual void Die() {}
+	protected virtual void Die() {
+		renderer.material = GetComponent<Tile>().material;
+	}
 	
 	
 	
