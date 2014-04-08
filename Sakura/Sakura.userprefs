@@ -1,0 +1,49 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Assets\Scripts\Plants\Plant.cs">
+    <Files>
+      <File FileName="Assets\Assets\Scripts\Tile\TileButtons.cs" Line="120" Column="3" />
+      <File FileName="Assets\Assets\Scripts\HexMap.cs" Line="1" Column="1" />
+      <File FileName="Assets\Assets\Scripts\Tile\Tile.cs" Line="1" Column="1" />
+      <File FileName="Assets\Assets\Scripts\Plants\Plant.cs" Line="94" Column="20" />
+      <File FileName="Assets\Assets\Scripts\Math\GraphNode.cs" Line="1" Column="1" />
+      <File FileName="Assets\Assets\Scripts\Math\HexMath.cs" Line="103" Column="31" />
+      <File FileName="Assets\Assets\Scripts\Math\GraphSearch.cs" Line="1" Column="1" />
+      <File FileName="Assets\Assets\Scripts\Plants\Trnje.cs" Line="18" Column="1" />
+      <File FileName="Assets\Assets\Scripts\Plants\Belarada.cs" Line="16" Column="1" />
+      <File FileName="Assets\Assets\Scripts\Plants\Leaf.cs" Line="16" Column="3" />
+      <File FileName="Assets\Assets\Scripts\Plants\Lokvanj.cs" Line="16" Column="3" />
+      <File FileName="Assets\Assets\Scripts\Plants\Root.cs" Line="18" Column="2" />
+      <File FileName="Assets\Assets\Scripts\Plants\Ruza.cs" Line="14" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Math" expanded="True" />
+                <Node name="Plants" expanded="True">
+                  <Node name="Plant.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
