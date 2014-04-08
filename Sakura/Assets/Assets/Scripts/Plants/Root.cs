@@ -15,9 +15,7 @@ public class Root : Plant {
 		attack = 1f;
 		maxSun = 1f; sunProduction = 0.2f; Sun = 0f;
 		maxWater = 1f; waterProduction = 0.2f; Water = 0f;
-		
-		material = Resources.Load("Materials/Baza") as Material;
-		setMaterial();
+	
 	}
 	
 	// Update is called once per frame

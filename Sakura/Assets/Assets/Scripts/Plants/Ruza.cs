@@ -11,8 +11,7 @@ public class Ruza : Plant {
 	private float prosli ;
 	
 	void Awake () {
-		material = Resources.Load("Materials/Ruza") as Material;
-
+	
 		isBuilt = false;
 		sunNeeded = 20;
 		
@@ -23,7 +22,6 @@ public class Ruza : Plant {
 		
 		prosli = Time.time;
 		
-		setMaterial();
 	}	
 	
 	// Update is called once per frame

@@ -282,9 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fbe090b4c2bd8c4bb7444464ff002f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconSize: 50
-  hmargin: 70
-  vmargin: 50
 --- !u!1 &1522440787
 GameObject:
   m_ObjectHideFlags: 0

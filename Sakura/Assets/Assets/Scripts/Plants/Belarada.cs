@@ -13,9 +13,7 @@ public class Belarada : Plant {
 		attack = 0f;
 		maxSun = 1f; sunProduction = 0.2f; Sun = 0f;
 		maxWater = 0f; waterProduction = 0f; Water = 0f;
-		
-		material = Resources.Load("Materials/Belarada") as Material;
-		setMaterial();
+
 	}
 	
 	// Update is called once per frame
