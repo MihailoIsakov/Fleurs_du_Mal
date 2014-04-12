@@ -37,7 +37,7 @@ public abstract class Plant : MonoBehaviour {
 	
 	protected float attack;
 	public float sunProduction, maxSun;
-	protected float sun; //checks if the plant has been built first
+	public float sun; //checks if the plant has been built first
 	public float Sun {
 		get {
 			return sun;
@@ -51,7 +51,6 @@ public abstract class Plant : MonoBehaviour {
 					sun = 0;
 					isBuilt = true;
 				}
-				setMaterial();
 			}
 		}
 	}
@@ -77,18 +76,8 @@ public abstract class Plant : MonoBehaviour {
 		get { return plantType; }
 	}
 	
-	protected Material material;
-	public Material Material {
-		get { return material;}
-		set { material = value;}
-	}
-	
-	protected virtual void setMaterial() {
-		renderer.material = Material;
-	}
-	
 	protected virtual void Start() {
-		node = new GraphNode(gameObject.GetComponent<Tile>().position); //at start, create node
+		node = new GraphNode(HexMath.getParentTile(gameObject).position); //at start, create node
 		node.findConnections(); // and find its connections
 	}
 	
@@ -98,14 +87,10 @@ public abstract class Plant : MonoBehaviour {
 	}
 	
 	protected virtual void OnDestroy() {
-		node.OnDestroy();
-		gameObject.renderer.material = gameObject.GetComponent<Tile>().material; //paint it as land
 	}
 	
 	protected virtual void Die() {
-		renderer.material = GetComponent<Tile>().material;
+		node.OnDestroy();
+		Destroy(gameObject);
 	}
-	
-	
-	
 }

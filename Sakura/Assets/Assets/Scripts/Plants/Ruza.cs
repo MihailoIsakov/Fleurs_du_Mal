@@ -11,8 +11,7 @@ public class Ruza : Plant {
 	private float prosli ;
 	
 	void Awake () {
-		material = Resources.Load("Materials/Ruza") as Material;
-
+	
 		isBuilt = false;
 		sunNeeded = 20;
 		
@@ -23,24 +22,6 @@ public class Ruza : Plant {
 		
 		prosli = Time.time;
 		
-		setMaterial();
 	}	
-	
-	// Update is called once per frame
-	void Update () { //TODO resi picvajz
-		
-				
-		
-//		if ( Time.time > ( prosli + cooldown ) )
-//		{
-//			Debug.Log("Ruzin interval");
-//			foreach (GameObject g in ( HexMath.neighbours ( gameObject.GetComponent<Tile>().position , range) ) ){
-//			GameObject token = Instantiate(thorn, transform.position, transform.parent.rotation) as GameObject;
-//			token.GetComponent<ThornProjectile>().Goal =  new Vector3(0.0f,0.0f,0.0f) ;
-//			prosli = Time.time;
-//				break;
-//			}
-//		}
-	}
 
 }

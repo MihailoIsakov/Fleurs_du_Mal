@@ -6,9 +6,11 @@ using System.Collections.Generic;
 public class WaterProjectile : AbstractProjectile {
 	
 	protected override bool candidate(GraphNode node) {
-		Plant plant = node.Parent.GetComponent<Plant>();
-		if (plant.Water < plant.maxWater && plant.waterProduction == 0) //if the plant needs water, and is not producing any
-			return true;
+	
+		Plant[] plants = node.ParentTile.GetComponentsInChildren<Plant>();
+		foreach (Plant plant in plants )
+			if (plant.Sun < plant.maxWater && plant.waterProduction == 0) //if the plant needs sun, and is not producing any
+				return true;
 		return false;
 	}
 	

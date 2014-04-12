@@ -3,45 +3,56 @@ using System.Collections;
 
 public class TileButtons : MonoBehaviour {
 	
-	private Texture2D belarada, leaf, lokvanj, maslacak, pecurka, ruza, trnje, vockica;
-	private bool bool_belarada, bool_leaf, bool_lokvanj, bool_maslacak, bool_pecurka, bool_ruza, bool_trnje, bool_vockica;
-	private GUIStyle style = new GUIStyle();
-	
 	enum Side {LEFT, RIGHT, ABOVE, BELOW};
 	
-	public int iconSize = 30;
+	private GUIStyle style = new GUIStyle();
+	
+	public int iconSize = 50;
 	public int hmargin = 70;
 	public int vmargin = 60;
-
+	private GameObject Daisy;
+	private GameObject Dandeilon;
+	private GameObject Fruit;
+	private GameObject Leaf;
+	private GameObject Lotus;
+	private GameObject Mushroom;
+	private GameObject Root;
+	private GameObject Rose;
+	private GameObject Thorn;
+	
 	void OnGUI() {
 		GameObject selected = HexMap.Instance.selected;
 		if (selected != null) { //check if selected exists
 			Vector3 screenPos = Camera.main.WorldToScreenPoint(HexMap.Instance.selected.transform.position);
 			
-			setupButtons(screenPos, selected.GetComponent<Tile>() as Tile, selected.GetComponent<Plant>() as Plant); 
+			Plant plant = selected.transform.GetComponentInChildren<Plant>(); //get the first plant that comes up.
+			setupButtons(screenPos, selected.GetComponent<Tile>() as Tile, plant); 
 		}
 	}
 	
 	void setupButtons(Vector3 screenPos, Tile tile, Plant plant) {
-		if (plant == null) //empty tile		
+		if (plant == null) {//empty tile		
+			GameObject selected = HexMap.Instance.selected;
 			switch (tile.tileType) {
 				case Tile.TileType.earth: //just land
 					if (Button(screenPos, Side.LEFT, Plant.PlantType.belarada))
-						HexMap.Instance.selected.AddComponent("Belarada");			
+						(Instantiate(Daisy, selected.transform.position, selected.transform.rotation) as GameObject).transform.parent = selected.transform;
+						//Instantiate a daisy at the coordinates of the selected transform, and set its parent to be the transform.		
 					if (Button(screenPos, Side.ABOVE, Plant.PlantType.leaf))
-						HexMap.Instance.selected.AddComponent("Leaf");
+						(Instantiate(Leaf, selected.transform.position, selected.transform.rotation) as GameObject).transform.parent = selected.transform;
 					if (Button(screenPos, Side.RIGHT, Plant.PlantType.ruza))
-						HexMap.Instance.selected.AddComponent("Ruza");
+						(Instantiate(Rose, selected.transform.position, selected.transform.rotation) as GameObject).transform.parent = selected.transform;
 					if (Button(screenPos, Side.BELOW, Plant.PlantType.trnje))
-						HexMap.Instance.selected.AddComponent("Trnje");						
+						(Instantiate(Thorn, selected.transform.position, selected.transform.rotation) as GameObject).transform.parent = selected.transform;
 					break;
 				case Tile.TileType.pond: //just water
 					if (Button(screenPos, Side.ABOVE, Plant.PlantType.lokvanj))
-						HexMap.Instance.selected.AddComponent("Lokvanj");
+						(Instantiate(Lotus, selected.transform.position, selected.transform.rotation) as GameObject).transform.parent = selected.transform;
 					break;
 				default:
 					break;
-			}	
+			}
+		}
 	}
 	
 
@@ -96,7 +107,19 @@ public class TileButtons : MonoBehaviour {
 		return tex;
 	}
 
-	void Start () {
+	void Awake () {
+		Daisy = Resources.Load("Prefabs/Plants/DaisyTile") as GameObject;
+		Dandeilon = Resources.Load("Prefabs/Plants/DandelionTile") as GameObject;
+		Fruit = Resources.Load("Prefabs/Plants/FruitTile") as GameObject;
+		Leaf = Resources.Load("Prefabs/Plants/LeafTile") as GameObject;
+		Lotus = Resources.Load("Prefabs/Plants/LotusTile") as GameObject;
+		Mushroom = Resources.Load("Prefabs/Plants/MushroomTile") as GameObject;
+		Root = Resources.Load("Prefabs/Plants/RootTile") as GameObject;
+		Rose = Resources.Load("Prefabs/Plants/RoseTile") as GameObject;
+		Thorn = Resources.Load("Prefabs/Plants/ThornTile") as GameObject;
+		
 		style.border = new RectOffset(0, 0, 0, 0);
+		
 	}
+
 }

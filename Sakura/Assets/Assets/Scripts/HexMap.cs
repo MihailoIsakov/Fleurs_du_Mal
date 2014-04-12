@@ -45,7 +45,8 @@ public class HexMap : MonoBehaviour {
 				if (x == 0 && y == 0)
 				{
 					tile = Instantiate (landTile, transform.position + x * SHIFTX + y * SHIFTY, transform.rotation) as GameObject;
-					tile.AddComponent("Root");
+					GameObject root = Resources.Load("Prefabs/Plants/RootTile") as GameObject;
+					(Instantiate(root, tile.transform.position, tile.transform.rotation) as GameObject).transform.parent = tile.transform;
 				}
 				else if (PONDCHANCE > Random.value) 
 					tile = Instantiate (pondTile, transform.position + x * SHIFTX + y * SHIFTY, transform.rotation) as GameObject;

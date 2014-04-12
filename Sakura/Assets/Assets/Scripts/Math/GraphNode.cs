@@ -6,8 +6,8 @@ using UnityEngine;
 public class GraphNode {
 
 	public Vector2 position;
-	private GameObject parent = null;
-	public GameObject Parent {
+	private GameObject parent;
+	public GameObject ParentTile {
 		get {
 			if (parent != null)
 				return parent;
@@ -55,12 +55,14 @@ public class GraphNode {
 	public void findConnections() {
 		connections = new List<GraphNode>();
 		
-		List<GameObject> neighbours = HexMath.neighbours(Parent, HexMath.RANGE); //see who's around
+		List<GameObject> neighbours = HexMath.neighbourTiles(ParentTile, HexMath.RANGE); //see who's around
 		foreach (GameObject obj in neighbours)
-			if (obj.GetComponent<Plant>() != null) // any plants?
+			if (obj.GetComponentsInChildren<Plant>() != null) // any plants?
 			{
-				GraphNode neighbourNode = obj.GetComponent<Plant>().Node; 
-				addMutualConnection(neighbourNode); //add him to my connections, and me to his.
+				foreach (Plant plant in obj.GetComponentsInChildren<Plant>()) {
+					GraphNode neighbourNode = plant.Node; 
+					addMutualConnection(neighbourNode); //add him to my connections, and me to his.
+				}
 			}
 	}
 	
