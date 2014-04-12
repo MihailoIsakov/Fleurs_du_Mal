@@ -14,7 +14,7 @@ public static class ProjectileUtility
 		{
 			bool hasTarget = true;
 			try { GraphSearch.horizonSearch(plant.Node, needsSun).path(); }
-			catch (NullReferenceException n) { hasTarget = false; } //cant find a path
+			catch (NullReferenceException) { hasTarget = false;} //cant find a path
 			
 			if (hasTarget) {
 				GameObject token = GameObject.Instantiate(sunToken, plant.transform.position, plant.transform.parent.rotation) as GameObject;
@@ -55,17 +55,19 @@ public static class ProjectileUtility
 	
 	//Check if this specific node needs sun.
 	private static bool needsSun(GraphNode node) {
-		Plant plant = node.Parent.GetComponent<Plant>();
-		if (plant.Sun < plant.maxSun && plant.sunProduction == 0) //if the plant needs sun, and is not producing any
-			return true;
+		Plant[] plants = node.ParentTile.GetComponentsInChildren<Plant>();
+		foreach (Plant plant in plants )
+			if (plant.Sun < plant.maxSun && plant.sunProduction == 0) //if the plant needs sun, and is not producing any
+				return true;
 		return false;
 	}
 	
 	//Check if this specific node needs water.
 	private static bool needsWater(GraphNode node) {
-		Plant plant = node.Parent.GetComponent<Plant>();
-		if (plant.Water < plant.maxWater && plant.waterProduction == 0) //if the plant needs sun, and is not producing any
-			return true;
+		Plant[] plants = node.ParentTile.GetComponentsInChildren<Plant>();
+		foreach (Plant plant in plants )
+			if (plant.Sun < plant.maxWater && plant.waterProduction == 0) //if the plant needs sun, and is not producing any
+				return true;
 		return false;
 	}	
 }

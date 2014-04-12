@@ -20,7 +20,7 @@ public abstract class AbstractProjectile : MonoBehaviour {
 			try {
 				list = GraphSearch.horizonSearch(plant.Node, candidate).path();
 			}
-			catch (NullReferenceException n) {
+			catch (NullReferenceException) {
 				list = new List<GraphNode>();
 			}
 			switch(list.Count) {
@@ -32,7 +32,7 @@ public abstract class AbstractProjectile : MonoBehaviour {
 				break;
 			default:
 				gameObject.rigidbody.velocity = 
-					(list[1].Parent.transform.position - list[0].Parent.transform.position).normalized * speed;
+					(list[1].ParentTile.transform.position - list[0].ParentTile.transform.position).normalized * speed;
 				break;
 			}
 		}

@@ -7,9 +7,9 @@ public class TileButtons : MonoBehaviour {
 	
 	private GUIStyle style = new GUIStyle();
 	
-	private int iconSize = 30;
-	private int hmargin = 70;
-	private int vmargin = 60;
+	public int iconSize = 50;
+	public int hmargin = 70;
+	public int vmargin = 60;
 	private GameObject Daisy;
 	private GameObject Dandeilon;
 	private GameObject Fruit;
@@ -109,7 +109,6 @@ public class TileButtons : MonoBehaviour {
 
 	void Awake () {
 		Daisy = Resources.Load("Prefabs/Plants/DaisyTile") as GameObject;
-		Debug.Log(Daisy);
 		Dandeilon = Resources.Load("Prefabs/Plants/DandelionTile") as GameObject;
 		Fruit = Resources.Load("Prefabs/Plants/FruitTile") as GameObject;
 		Leaf = Resources.Load("Prefabs/Plants/LeafTile") as GameObject;

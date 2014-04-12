@@ -18,9 +18,4 @@ public class Trnje : Plant {
 		prosli = Time.time;
 		
 	}
-		
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
